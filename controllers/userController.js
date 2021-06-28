@@ -6,10 +6,10 @@ const jwt = require('jsonwebtoken');
 
 exports.registerNewUser = (req, res) => {
 	
-	const { username, password } = req.body;
+	const { username, password, accessName, accessKey } = req.body;
 
 	//check if all input fields have value
-	if(!username || !password) {
+	if(!username || !password || !accessName || !accessKey) {
 		return res.status(400).json({ message: 'Please, enter all fields.' });
 	}
 

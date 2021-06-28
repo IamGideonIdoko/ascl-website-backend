@@ -5,11 +5,11 @@ const authController = require('../../controllers/authController');
 
 
 /*
-@route 			POST /api/auth
+@route 			POST /api/authenticateuser (authenticate user)
 @description 	authenticate the user.
 @access 		Public
 */
-router.post('/', authController.authenticateUser);
+router.post('/authenticateuser', authController.authenticateUser);
 
 
 /*

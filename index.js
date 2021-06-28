@@ -7,6 +7,7 @@ const rateLimit = require("express-rate-limit");
 const usersRoute = require('./routes/api/users');
 const blogpostsRoute = require('./routes/api/blogposts');
 const authRoute = require('./routes/api/auth');
+const accessRoute = require('./routes/api/access');
 
 // mongoDB connection string.
 const db = require('./config/keys').mongodbURI;
@@ -60,6 +61,7 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTo
 app.use('/api/users', usersRoute);
 app.use('/api/blogposts', blogpostsRoute);
 app.use('/api/auth', authRoute);
+app.use('/api/access', accessRoute);
 
 app.get('/', (req, res) => {
     res.json({
