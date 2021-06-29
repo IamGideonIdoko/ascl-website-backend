@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 exports.registerNewUser = (req, res) => {
 	
-	const { username, password, access_name, access_key } = req.body;
+	const { username, password, retype_password, access_name, access_key } = req.body;
 
 	//check if all input fields have value
 	if(!username || !password || !retype_password || !access_name || !access_key) {
