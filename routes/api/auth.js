@@ -5,7 +5,7 @@ const authController = require('../../controllers/authController');
 
 
 /*
-@route 			POST /api/authenticateuser (authenticate user)
+@route 			POST /api/auth/authenticateuser (authenticate user)
 @description 	authenticate the user.
 @access 		Public
 */
@@ -13,11 +13,11 @@ router.post('/authenticateuser', authController.authenticateUser);
 
 
 /*
-@route 			GET api/auth/user
+@route 			GET api/auth/fetchauthenticateduser (fetch authenticated user)
 @description 	Get authenticated user data.
 @access 		Private
 */
-router.get('/user', auth, authController.fetchAuthenticatedUser)
+router.get('/fetchauthenticateduser', auth, authController.fetchAuthenticatedUser)
 
 
 //export router

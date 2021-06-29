@@ -23,13 +23,13 @@ app.use(express.urlencoded({ extended: false }));
 /* 
 @description    For CORS (To allow for every request set `corsOption.origin` to true)
 */
-const allowlist = ['http://localhost:5000']
+const allowlist = ['http://localhost:5000', 'http://localhost:3000'];
 const corsOptionsDelegate = function (req, callback) {
     let corsOptions;
     if (allowlist.indexOf(req.header('Origin')) !== -1) {
-        corsOptions = { origin: true } // enable CORS for this request.
+        corsOptions = { origin: true } // enable CORS for this request. (default: true)
     } else {
-        corsOptions = { origin: false } // disable CORS for this request.
+        corsOptions = { origin: false } // disable CORS for this request. (defaul: false)
     }
     callback(null, corsOptions) // callback expects two parameters: error and options
 }

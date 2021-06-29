@@ -10,8 +10,12 @@ exports.registerNewUser = (req, res) => {
 	const { username, password, access_name, access_key } = req.body;
 
 	//check if all input fields have value
-	if(!username || !password || !access_name || !access_key) {
+	if(!username || !password || !retype_password || !access_name || !access_key) {
 		return res.status(400).json({ message: 'Please, enter all fields.' });
+	}
+
+	if(password !== retype_password) {
+		return res.status(400).json({ message: 'Passwords must be same.'});
 	}
 
 	// validate to see if the access name and key is original
