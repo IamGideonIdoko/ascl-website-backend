@@ -5,11 +5,9 @@ const cors = require('cors');
 const rateLimit = require("express-rate-limit");
 // routes
 const usersRoute = require('./routes/api/users');
-const blogpostsRoute = require('./routes/api/blogposts');
 const authRoute = require('./routes/api/auth');
 const accessRoute = require('./routes/api/access');
-const photosRoute = require('./routes/api/photos');
-const documentsRoute = require('./routes/api/documents');
+const assetsRoute = require('./routes/api/assets');
 
 // mongoDB connection string.
 const db = require('./config/keys').mongodbURI;
@@ -61,11 +59,9 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTo
 @description    Use route.
 */
 app.use('/api/users', usersRoute);
-app.use('/api/blogposts', blogpostsRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/access', accessRoute);
-app.use('/api/photos', photosRoute);
-app.use('/api/documents', documentsRoute);
+app.use('/api/assets', assetsRoute);
 
 app.get('/', (req, res) => {
     res.json({

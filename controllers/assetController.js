@@ -1,34 +1,39 @@
-const Photo = require('../models/Photos');
+const Asset = require('../models/Asset');
 
-exports.addNewPhoto = (req, res) => {
-    const {name, url, size, file_type, author_username} = req.body;
+exports.addNewAsset = (req, res) => {
+    const {name, url, size, file_type, author_username, category} = req.body;
 
     //check if required fields have value
-    if (!name || !url || !size || !file_type || !author_username) {
+    if (!name || !url || !size || !file_type || !author_username || !category) {
         return res
             .status(400)
             .json({message: 'Please, enter all fields.'});
     }
 
+    if (category !== "photo" && category !== "video" && category !== "document") {
+        return res.status(400).json({message: 'File category not accepted'});
+    } 
+
     //Check for existing user in that model through email
-    Photo
+    Asset
         .findOne({name})
-        .then(photo => {
-            if (photo) {
+        .then(asset => {
+            if (asset) {
                 return res
                     .status(404)
-                    .json({message: 'Photo with the same name already exists.'})
+                    .json({message: 'Asset with the same name already exists.'})
             } else {
-                //create new photo from the model
-                const newPhoto = new Photo({
+                //create new asset from the model
+                const newAsset = new Asset({
                     name,
                     url,
                     size,
                     file_type,
                     author_username,
+                    category
                 });
 
-                newPhoto
+                newAsset
                     .save()
                     .then(asset => {
                         const {
@@ -38,6 +43,7 @@ exports.addNewPhoto = (req, res) => {
                             size,
                             file_type,
                             author_username,
+                            category,
                             created_at
                         } = asset;
 
@@ -49,6 +55,7 @@ exports.addNewPhoto = (req, res) => {
                                 size,
                                 file_type,
                                 author_username,
+                                category,
                                 created_at
                             }
                         })
@@ -58,16 +65,16 @@ exports.addNewPhoto = (req, res) => {
 
 }
 
-exports.getAllPhotos = (req, res) => {
-	Photo.find() //get all the photos in the db
+exports.getAllAssets = (req, res) => {
+	Asset.find() //get all the assets in the db
 		.sort({ created_at: -1 })
 		.then(assets => res.json(assets))
 		.catch(err => console.log(err));
 }
 
-exports.deleteOnePhoto = (req, res) => {
-	//find the photo by the given name
-	Photo.findById(req.params.id)
+exports.deleteOneAsset = (req, res) => {
+	//find the asset by the given id
+	Asset.findById(req.params.id)
 		.then(asset => asset.remove().then(() => res.json({success: true})))
 		.catch(err => res.status(404).json({success: false}));
 }
