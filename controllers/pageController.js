@@ -56,7 +56,6 @@ exports.createNewPage = (req, res) => {
         });
 }
 
-
 /*
 @description 	Delete a single page with given id.
 */
@@ -68,8 +67,16 @@ exports.deleteOnePage = (req, res) => {
         .catch(err => res.status(404).json({success: false}));
 }
 
-
 /*
 @description 	Update a single page with given id.
 */
-exports.updateOnePage = (req, res) => {}
+exports.updateOnePage = (req, res) => {
+    const {id} = req.params;
+    Page.findByIdAndUpdate(id, req.body, {
+        new: true
+    }, (err, data) => {
+        if (err) 
+            return res.status(404).json({success: false});
+        res.json(data);
+    })
+}
