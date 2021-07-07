@@ -20,7 +20,7 @@ exports.createNewPage = (req, res) => {
     const {title, slug, cover_img, author_username, body, category} = req.body;
 
     //quick validation
-    if (!title || !slug || !cover_img || !author_username || !body || category) {
+    if (!title || !slug || !cover_img || !author_username || !body || !category) {
         return res
             .status(400)
             .json({message: "All fields are required."});

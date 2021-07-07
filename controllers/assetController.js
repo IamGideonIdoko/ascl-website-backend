@@ -35,31 +35,7 @@ exports.addNewAsset = (req, res) => {
 
                 newAsset
                     .save()
-                    .then(asset => {
-                        const {
-                            id,
-                            name,
-                            url,
-                            size,
-                            file_type,
-                            author_username,
-                            category,
-                            created_at
-                        } = asset;
-
-                        res.json({
-                            asset: {
-                                id,
-                                name,
-                                url,
-                                size,
-                                file_type,
-                                author_username,
-                                category,
-                                created_at
-                            }
-                        })
-                    });
+                    .then(asset => res.json(asset));
             }
         })
 
