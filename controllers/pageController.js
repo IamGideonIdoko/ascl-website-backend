@@ -17,14 +17,18 @@ exports.fetchAllPages = (req, res) => {
 @description 	Create a new page.
 */
 exports.createNewPage = (req, res) => {
-    const {title, slug, cover_img, author_username, body} = req.body;
+    const {title, slug, cover_img, author_username, body, category} = req.body;
 
     //quick validation
-    if (!title || !slug || !cover_img || !author_username || !body) {
+    if (!title || !slug || !cover_img || !author_username || !body || category) {
         return res
             .status(400)
             .json({message: "All fields are required."});
     }
+
+    if (category !== "news" && category !== "press-release") {
+        return res.status(400).json({message: 'Page category not accepted'});
+    } 
 
     Page
         .findOne({title})
@@ -45,7 +49,7 @@ exports.createNewPage = (req, res) => {
                         }
 
                         //create a new page from the model
-                        const newPage = new Page({title, slug: strToSlug(slug), cover_img, author_username: user.username, body});
+                        const newPage = new Page({title, slug: strToSlug(slug), cover_img, author_username: user.username, body, category});
 
                         //add new page to the db
                         newPage
