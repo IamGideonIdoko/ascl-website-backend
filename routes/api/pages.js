@@ -14,11 +14,11 @@ router.get('/fetchallpages', pageController.fetchAllPages);
 
 
 /*
-@route 			POST api/pages/addnewpage (add new page)
+@route 			POST api/pages/createnewpage (create new page)
 @description 	Create a new page.
 @access 		Private (auth needed).
 */
-router.post('/addnewpage', auth, pageController.createBlogPost);
+router.post('/createnewpage', auth, pageController.createNewPage);
 
 
 /*
@@ -26,8 +26,7 @@ router.post('/addnewpage', auth, pageController.createBlogPost);
 @description 	Delete a single page with given id.
 @access 		Private (auth needed).
 */
-router.delete('/deleteonepage/:id', auth, pageController.deleteOnePost);
-
+router.delete('/deleteonepage/:id', auth, pageController.deleteOnePage);
 
 
 /*
@@ -35,7 +34,7 @@ router.delete('/deleteonepage/:id', auth, pageController.deleteOnePost);
 @description 	update a single page with given id.
 @access 		Private (auth needed).
 */
-router.put('/updateonepage/:id', auth, pageController.updateOnePost);
+router.put('/updateonepage/:id', auth, pageController.updateOnePage);
 
 
 module.exports = router;
