@@ -13,9 +13,8 @@ exports.fetchAllPages = (req, res) => {
         .catch(err => console.log(err));
 }
 
-
 /*
-@description 	Create new page.
+@description 	Create a new page.
 */
 exports.createNewPage = (req, res) => {
     const {title, slug, cover_img, author_username, body} = req.body;
@@ -57,6 +56,20 @@ exports.createNewPage = (req, res) => {
         });
 }
 
-exports.deleteOnePage = (req, res) => {}
 
+/*
+@description 	Delete a single page with given id.
+*/
+exports.deleteOnePage = (req, res) => {
+    const {id} = req.params;
+    Page
+        .findById(id)
+        .then(page => post.remove().then(() => res.json({success: true})))
+        .catch(err => res.status(404).json({success: false}));
+}
+
+
+/*
+@description 	Update a single page with given id.
+*/
 exports.updateOnePage = (req, res) => {}
