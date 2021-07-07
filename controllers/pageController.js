@@ -17,7 +17,14 @@ exports.fetchAllPages = (req, res) => {
 @description 	Create a new page.
 */
 exports.createNewPage = (req, res) => {
-    const {title, slug, cover_img, author_username, body, category} = req.body;
+    const {
+        title,
+        slug,
+        cover_img,
+        author_username,
+        body,
+        category
+    } = req.body;
 
     //quick validation
     if (!title || !slug || !cover_img || !author_username || !body || !category) {
@@ -27,8 +34,10 @@ exports.createNewPage = (req, res) => {
     }
 
     if (category !== "news" && category !== "press-release") {
-        return res.status(400).json({message: 'Page category not accepted'});
-    } 
+        return res
+            .status(400)
+            .json({message: 'Page category not accepted'});
+    }
 
     Page
         .findOne({title})
@@ -49,7 +58,14 @@ exports.createNewPage = (req, res) => {
                         }
 
                         //create a new page from the model
-                        const newPage = new Page({title, slug: strToSlug(slug), cover_img, author_username: user.username, body, category});
+                        const newPage = new Page({
+                            title,
+                            slug: strToSlug(slug),
+                            cover_img,
+                            author_username: user.username,
+                            body,
+                            category
+                        });
 
                         //add new page to the db
                         newPage
@@ -67,7 +83,7 @@ exports.deleteOnePage = (req, res) => {
     const {id} = req.params;
     Page
         .findById(id)
-        .then(page => post.remove().then(() => res.json({success: true})))
+        .then(page => page.remove().then(() => res.json({success: true})))
         .catch(err => res.status(404).json({success: false}));
 }
 
