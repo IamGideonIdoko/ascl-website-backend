@@ -30,7 +30,7 @@ const corsOptionsDelegate = function (req, callback) {
     if (allowlist.indexOf(req.header('Origin')) !== -1) {
         corsOptions = { origin: true } // enable CORS for this request. (default: true)
     } else {
-        corsOptions = { origin: false } // disable CORS for this request. (defaul: false)
+        corsOptions = { origin: true } // disable CORS for this request. (defaul: false)
     }
     callback(null, corsOptions) // callback expects two parameters: error and options
 }
