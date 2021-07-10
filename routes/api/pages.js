@@ -21,7 +21,7 @@ router.post('/createnewpage', auth, pageController.createNewPage);
 
 
 /*
-@route 			DELETE api/deleteonepage/:id
+@route 			DELETE api/pages/deleteonepage/:id
 @description 	Delete a single page with given id.
 @access 		Private (auth needed).
 */
@@ -29,7 +29,7 @@ router.delete('/deleteonepage/:id', auth, pageController.deleteOnePage);
 
 
 /*
-@route 			PUT api/blogposts/updateonepage/:id
+@route 			PUT api/pages/updateonepage/:id
 @description 	Update a single page with given id.
 @access 		Private (auth needed).
 */
