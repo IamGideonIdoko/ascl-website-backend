@@ -10,16 +10,18 @@ const MgmtProfileSchema = new Schema({
 	},
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
-    photo: String, 
+    photo: {
+        type: String,
+        required: true
+    },
 	about: {
 		type: String,
 		required: true
 	},
     position_level: {
-        type: String,
+        type: Number,
         required: true
     },
     created_at: {
