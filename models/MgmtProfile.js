@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// Define Page Schema.
+// Define MgmtProfile Schema.
 const MgmtProfileSchema = new Schema({
     position: {
 		type: String,
@@ -36,8 +36,8 @@ const MgmtProfileSchema = new Schema({
     updated_at: Date
 });
 
-// Create Page Model.
-const MgmtProfileModel = mongoose.model('Page', MgmtProfileSchema);
+// Create MgmtProfile Model.
+const MgmtProfileModel = mongoose.model('MgmtProfile', MgmtProfileSchema);
 
 
 module.exports = MgmtProfileModel;

@@ -9,6 +9,9 @@ const authRoute = require('./routes/api/auth');
 const accessRoute = require('./routes/api/access');
 const assetsRoute = require('./routes/api/assets');
 const pagesRoute = require('./routes/api/pages');
+const mgmtProfilesRoute = require('./routes/api/mgmtprofiles');
+const galleriesRoute = require('./routes/api/galleries');
+const faqsRoute = require('./routes/api/faqs');
 
 // mongoDB connection string.
 const db = require('./config/keys').mongodbURI;
@@ -64,6 +67,9 @@ app.use('/api/auth', authRoute);
 app.use('/api/access', accessRoute);
 app.use('/api/assets', assetsRoute);
 app.use('/api/pages', pagesRoute);
+app.use('/api/mgmtprofiles', mgmtProfilesRoute);
+app.use('/api/galleries', galleriesRoute);
+app.use('/api/faqs', faqsRoute);
 
 app.get('/', (req, res) => {
     res.json({

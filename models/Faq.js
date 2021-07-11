@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// Define Page Schema.
+// Define Faq Schema.
 const FaqSchema = new Schema({
     question: {
 		type: String,
@@ -18,8 +18,8 @@ const FaqSchema = new Schema({
     updated_at: Date
 });
 
-// Create Page Model.
-const FaqModel = mongoose.model('Page', FaqSchema);
+// Create Faq Model.
+const FaqModel = mongoose.model('Faq', FaqSchema);
 
 
 module.exports = FaqModel;

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// Define Page Schema.
+// Define Gallery Schema.
 const GallerySchema = new Schema({
     cover_img: {
 		type: String,
@@ -18,8 +18,8 @@ const GallerySchema = new Schema({
     updated_at: Date
 });
 
-// Create Page Model.
-const GalleryModel = mongoose.model('Page', GallerySchema);
+// Create Gallery Model.
+const GalleryModel = mongoose.model('Gallery', GallerySchema);
 
 
 module.exports = GalleryModel;
