@@ -22,7 +22,7 @@ exports.createNewMgmtProfile = (req, res) => {
         photo,
         about,
         position_level
-    } = req.about;
+    } = req.body;
 
     //quick validation
     if (!position || !slug || !photo || !about || !position_level) {
