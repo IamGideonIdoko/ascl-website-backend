@@ -12,6 +12,11 @@ const MgmtProfileSchema = new Schema({
         type: String,
         required: true
     },
+    slug: {
+        type: String,
+        required: true,
+        unique: true
+    },
     photo: {
         type: String,
         required: true
