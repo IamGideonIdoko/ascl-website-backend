@@ -18,6 +18,7 @@ exports.fetchAllMgmtProfiles = (req, res) => {
 exports.createNewMgmtProfile = (req, res) => {
     const {
         position,
+        name,
         slug,
         photo,
         about,
@@ -25,7 +26,7 @@ exports.createNewMgmtProfile = (req, res) => {
     } = req.body;
 
     //quick validation
-    if (!position || !slug || !photo || !about || !position_level) {
+    if (!position || !name || !slug || !photo || !about || !position_level) {
         return res
             .status(400)
             .json({message: "All fields are required."});
@@ -43,6 +44,7 @@ exports.createNewMgmtProfile = (req, res) => {
                 //create a new mgmtprofile from the model
                 const newMgmtProfile = new MgmtProfile({
                     position,
+                    name,
                     slug: strToSlug(slug),
                     photo,
                     about,
@@ -73,7 +75,7 @@ exports.deleteOneMgmtProfile = (req, res) => {
 */
 exports.updateOneMgmtProfile = (req, res) => {
     const {id} = req.params;
-    MgmtProfile.findByIdAndUpdate(id, req.about, {
+    MgmtProfile.findByIdAndUpdate(id, req.body, {
         new: true
     }, (err, data) => {
         if (err) 
