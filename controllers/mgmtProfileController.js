@@ -1,5 +1,4 @@
 const MgmtProfile = require('../models/MgmtProfile');
-const User = require('../models/User');
 const {strToSlug} = require('../helper');
 
 /*
@@ -46,7 +45,6 @@ exports.createNewMgmtProfile = (req, res) => {
                     position,
                     slug: strToSlug(slug),
                     photo,
-                    author_username: user.username,
                     about,
                     position_level
                 });
