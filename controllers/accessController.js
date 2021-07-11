@@ -3,6 +3,20 @@ const User = require('../models/User');
 const config = require('../config/keys');
 const bcrypt = require('bcryptjs');
 
+
+/*
+@description 	Fetch all available accesses.
+*/
+exports.fetchAllAccesses = (req, res) => {
+    Access
+        .find()
+        .select('-access_key')
+        .sort({created_at: -1})
+        .then(accesses => res.json(accesses))
+        .catch(err => console.log(err));
+}
+
+
 exports.createNewAccess = (req, res) => {
 
     const {access_name, access_key, created_by} = req.body;
@@ -64,4 +78,16 @@ exports.createNewAccess = (req, res) => {
             }
         });
 
+}
+
+
+/*
+@description 	Delete a single access with given id.
+*/
+exports.deleteOneAccess = (req, res) => {
+    const {id} = req.params;
+    Access
+        .findById(id)
+        .then(page => page.remove().then(() => res.json({success: true})))
+        .catch(err => res.status(404).json({success: false}));
 }
