@@ -58,11 +58,12 @@ exports.createNewAccess = (req, res) => {
                                     newAccess
                                         .save()
                                         .then(access => {
-                                            const {id, access_name, created_by, created_at} = access;
+                                            const {id, access_name, created_by, is_valid, created_at} = access;
                                             res.json({
                                                 id,
                                                 access_name,
                                                 created_by,
+                                                is_valid,
                                                 created_at
                                             });
                                         });
