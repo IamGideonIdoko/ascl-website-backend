@@ -64,7 +64,7 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTo
 */
 app.use('/api/users', usersRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/access', accessRoute);
+app.use('/api/accesses', accessRoute);
 app.use('/api/assets', assetsRoute);
 app.use('/api/pages', pagesRoute);
 app.use('/api/mgmtprofiles', mgmtProfilesRoute);
